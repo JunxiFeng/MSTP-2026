@@ -1,0 +1,29 @@
+name: mstp-day4-5
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - python=3.11
+  - scanpy
+  - anndata
+  - squidpy
+  - leidenalg
+  - python-igraph
+  - scikit-image
+  - umap-learn
+  - scikit-learn
+  - pertpy
+  - pydeseq2
+  - decoupler-py
+  - cnmf
+  - pandas
+  - numpy
+  - scipy
+  - statsmodels
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - ipykernel
+  - pytest

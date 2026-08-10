@@ -1,0 +1,22 @@
+name: mstp-day2
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - scanpy
+  - anndata
+  - squidpy
+  - leidenalg
+  - python-igraph
+  - scikit-learn
+  - scikit-image
+  - umap-learn
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - ipykernel
+  - pytest

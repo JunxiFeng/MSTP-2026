@@ -1,0 +1,13 @@
+name: mstp-day1
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - matplotlib
+  - jupyterlab
+  - ipykernel
+  - pytest
