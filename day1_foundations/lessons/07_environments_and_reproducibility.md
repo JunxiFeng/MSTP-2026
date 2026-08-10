@@ -47,7 +47,7 @@ conda --version
 mamba --version
 ```
 
-On TSCC, a conda/mamba installation is typically already available via `module load` — check `module avail` for an existing anaconda/miniconda module before installing your own (see [10_hpc_and_slurm.md](10_hpc_and_slurm.md)).
+On TSCC specifically, `module load anaconda3` gives you a real, working `conda` (confirmed: version 25.11.1, which already defaults to the fast `libmamba` solver) — but no separate `mamba` command comes with it. Use the conda-only commands below on TSCC; `mamba` is only there if you installed Miniforge yourself. Check `module avail` for the exact module name before assuming it's called `anaconda3` (see [10_hpc_and_slurm.md](10_hpc_and_slurm.md)).
 
 ## Creating this course's environment
 
