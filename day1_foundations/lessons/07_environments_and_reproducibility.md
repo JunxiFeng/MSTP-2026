@@ -32,38 +32,48 @@ which prints the exact interpreter path, version, and working directory being us
 
 ## Installing a package manager: Miniforge (conda + mamba)
 
-This course uses `conda`/`mamba` environments. If you don't already have conda, install [Miniforge](https://conda-forge.org/download/) (the community-maintained, conda-forge-first distribution that includes both `conda` and the faster `mamba` solver):
+You already did this in [START_HERE.md](../../START_HERE.md) — this is the same steps again, with the reasoning filled in. This course uses `conda`/`mamba` environments; [Miniforge](https://conda-forge.org/download/) is the community-maintained, conda-forge-first distribution that includes both:
 
 ```bash
-# macOS/Linux
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
-Restart your terminal afterward, then confirm:
+The installer prompts you through the license and install location (default `~/miniforge3` is fine). It won't automatically show up in new terminals until you tell it to hook into your shell:
+
+```bash
+~/miniforge3/bin/conda init bash
+source ~/.bashrc
+```
+
+You should now see `(base)` at the start of your prompt. Confirm:
 
 ```bash
 conda --version
 mamba --version
 ```
 
-On TSCC specifically, `module load anaconda3` gives you a real, working `conda` (confirmed: version 25.11.1, which already defaults to the fast `libmamba` solver) — but no separate `mamba` command comes with it. Use the conda-only commands below on TSCC; `mamba` is only there if you installed Miniforge yourself. Check `module avail` for the exact module name before assuming it's called `anaconda3` (see [10_hpc_and_slurm.md](10_hpc_and_slurm.md)).
+(TSCC also has a working `conda` available via `module load anaconda3`, without a separate `mamba` — but installing your own via Miniforge is what START_HERE has you do, since it works identically everywhere, not just on TSCC.)
 
 ## Creating this course's environment
 
 The environment for Day 1 is defined declaratively in [environments/day1.yml](../../environments/day1.yml) — a text file listing the exact packages and versions, so it can be recreated identically by anyone.
 
+**Don't run `conda env create` directly on a login node** (TSCC or otherwise sharing compute among many users) — you likely already did this correctly in [START_HERE.md](../../START_HERE.md) via `sbatch`, so this is about understanding why: solving an environment means parsing the *entire* channel index first (conda-forge's full package list, hundreds of MB), regardless of how few packages you're actually installing. That's enough to trip a login node's per-process memory cap — confirmed real: a plain `conda env create` on TSCC's login node dies mid-solve with `Killed` and nothing else. Submit it as a job instead (this is Slurm — [10_hpc_and_slurm.md](10_hpc_and_slurm.md) covers it properly):
+
 ```bash
-mamba env create -f environments/day1.yml
+mkdir -p logs
+sbatch day1_foundations/templates/slurm_templates/build_day1_env.slurm
+squeue -u $USER
+```
+
+Then activate as normal, which is cheap and fine to do directly on the login node — only the solve/install step is the problem:
+
+```bash
 conda activate mstp-day1
 ```
 
-Conda-only fallback if Mamba is unavailable:
-
-```bash
-conda env create -f environments/day1.yml
-conda activate mstp-day1
-```
+If you have a real `mamba` command (e.g. from installing Miniforge yourself), it's a drop-in replacement for `conda env create` inside that same Slurm script.
 
 Verify:
 

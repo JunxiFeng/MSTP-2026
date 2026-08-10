@@ -33,20 +33,19 @@ Everything below is the minimum to get moving — each step is explained properl
    ```bash
    conda --version
    ```
-3. Build the environment — **on a compute node, not the login node.** This is small, but "small" doesn't save you here: `conda env create` parses the *entire* channel index (conda-forge's full package list, hundreds of MB) to solve, before it even gets to installing your handful of packages — enough to get killed by the login node's per-process memory cap (confirmed real: a plain `conda env create` on the login node dies mid-solve with `Killed`, no other explanation given). Request an interactive compute node first (this is Slurm — lesson 10 teaches it properly, just follow along for now):
+3. Build the environment — **through Slurm, not directly on the login node.** This is small, but "small" doesn't save you here: `conda env create` parses the *entire* channel index (conda-forge's full package list, hundreds of MB) to solve, before it even gets to installing your handful of packages — enough to get killed by the login node's per-process memory cap (confirmed real: a plain `conda env create` on the login node dies mid-solve with `Killed`, no other explanation given). Submit it as a job instead (this is Slurm — lesson 10 teaches it properly, just follow along for now):
 
    ```bash
-   srun --partition=hotel --qos=hotel --account=htl191 --mem=16G --cpus-per-task=2 --time=00:30:00 --pty /bin/bash
+   mkdir -p logs
+   sbatch day1_foundations/templates/slurm_templates/build_day1_env.slurm
+   squeue -u $USER
    ```
 
-   You're now on a compute node, in the same directory you started from. Build and activate the environment here:
+   Once it drops off that list, check `logs/build-day1-env-<jobid>.out` and `.err` for errors, then activate as normal:
 
    ```bash
-   conda env create -f environments/day1.yml
    conda activate mstp-day1
    ```
-
-   Once that finishes, `exit` to return to the login node — you only needed the compute node for the build itself, and you'll `conda activate mstp-day1` again from the login node from here on (activation is cheap; the environment now already exists).
 
 4. Confirm which Python you are using:
 
