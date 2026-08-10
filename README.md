@@ -13,10 +13,6 @@ You will feel behind at some point. That's normal, not a sign you're missing som
 - Real practice using a coding agent well — and just as important, practice not trusting one blindly.
 - A first hands-on experience running something on TSCC, our shared HPC cluster.
 
-## Where things stand
-
-Day 1 ([day1_foundations/](day1_foundations/)), Day 2 ([day2_single_cell/](day2_single_cell/)), Day 3 ([day3_biological_inference/](day3_biological_inference/)), and Day 4/5 ([day4_5_independent_projects/](day4_5_independent_projects/)) are built.
-
 ## Getting started
 
 Open [START_HERE.md](START_HERE.md) — it walks you through today, one step at a time, starting from wherever you actually are right now.
