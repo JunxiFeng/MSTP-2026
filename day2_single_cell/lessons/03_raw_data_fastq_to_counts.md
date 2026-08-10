@@ -2,6 +2,23 @@
 
 **REQUIRED DAY 2**
 
+## Before you start: this lesson teaches STARsolo, but you'll probably use Cell Ranger
+
+If you have 10x Genomics data in your own research, the tool you'll actually reach for is almost certainly **Cell Ranger** (10x's own official pipeline), not STARsolo. One command, `cellranger count`, runs alignment, barcode/UMI processing, cell calling, and basic QC together, using sensible defaults chosen for you — you don't hand-specify barcode length or UMI length the way this lesson does below.
+
+This lesson teaches STARsolo instead specifically because it makes every one of those steps an explicit, visible flag rather than a default buried inside someone else's pipeline — that's the whole point of walking through "real commands" below rather than jumping straight to real output. Once you understand what STARsolo's flags are actually doing, Cell Ranger's defaults stop being a black box; they're the same decisions, just pre-made for you.
+
+**When you do run Cell Ranger yourself**, it hands you a `web_summary.html` report instead of raw log files. Check these before trusting anything downstream (real thresholds, from [10x Genomics' own QC guide](https://www.10xgenomics.com/analysis-guides/quality-assessment-using-the-cell-ranger-web-summary)):
+
+- **Estimated Number of Cells** — does it match what you actually loaded/expected? A wildly off number usually means cell calling went wrong, not that biology surprised you.
+- **Mean Reads per Cell** — 10x recommends at least ~20,000 read pairs per cell; well below that and you're likely underpowered to detect lowly-expressed genes.
+- **Valid Barcodes** — should be high; below ~75% points at a sequencing or library-prep problem, not a downstream analysis choice.
+- **Sequencing Saturation** — how much of the library's actual complexity you've already sequenced (90%+ is considered very good). Low saturation with reads to spare means more sequencing would still find new molecules; it's not automatically bad, but it changes what "more depth" would buy you.
+- **Reads Mapped to Genome** — expect >85% for a standard human/mouse sample. Lower than that before you even get to per-gene counting is a reference or sample-quality problem worth chasing down first.
+- **Fraction Reads in Cells** — the fraction of good reads that land in barcodes Cell Ranger actually called as cells. Below ~70% signals a lot of ambient RNA/debris contaminating your "cells," the same category of problem Day 2's later QC lessons ask you to catch yourself.
+
+None of this replaces your own QC ([05_loading_data_and_qc.ipynb](05_loading_data_and_qc.ipynb)) — it's the first checkpoint, before you've even opened the count matrix, not the last one.
+
 ## Peek at the real data
 
 Today's shared data lives at `/tscc/nfs/home/juf009/day2_shared_data/` (see the [Day 2 README](../README.md#where-todays-data-lives) for why it's there instead of in the git repo). You can read it directly — let's look at an actual read before talking about what it means:
@@ -125,6 +142,8 @@ Run both `cat` commands above yourself. From the real output, answer: what fract
 
 ## Further reading
 
+- [10x Genomics: Quality Assessment Using the Cell Ranger Web Summary](https://www.10xgenomics.com/analysis-guides/quality-assessment-using-the-cell-ranger-web-summary) — the real thresholds behind the "Before you start" section above.
+- [Cell Ranger count Web Summary reference](https://www.10xgenomics.com/support/software/cell-ranger/latest/analysis/outputs/cr-outputs-web-summary-count) — every metric in the report, not just the ones flagged above.
 - [STARsolo documentation](https://gensoft.pasteur.fr/docs/STAR/2.7.9a/STARsolo.html)
 - [Galaxy Training Network: Pre-processing of 10X Single-Cell RNA Datasets](https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-preprocessing-tenx/tutorial.html) — a full worked tutorial using this exact dataset and tool.
 - [10x Genomics: Best Practices for Analysis of 10x Genomics Single Cell RNA-seq Data](https://www.10xgenomics.com/analysis-guides/best-practices-analysis-10x-single-cell-rnaseq-data)
