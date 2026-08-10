@@ -32,17 +32,17 @@ That number is the job ID — yours will differ every time you submit.
 squeue -u $USER
 ```
 
-**Output** (real, from a confirmed run):
+**Output** (illustrative — your job ID, node, and `TIME` will all be different from this):
 
 ```text
   JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 11738204     hotel day2-pra   juf009  R       0:26      1 tscc-11-17
 ```
 
-Once it drops off that list (confirmed real run: 1m52s — most of that is Python/scanpy startup, not the checks themselves), check what it did:
+`sbatch` printed your own job ID when you submitted (`Submitted batch job <jobid>`) — use that number, not the one above, everywhere below. Once it drops off the `squeue` list (a confirmed run took 1m52s — most of that is Python/scanpy startup, not the checks themselves, but yours may take more or less), check what it did:
 
 ```bash
-sacct -j 11738204 --format=JobID,JobName,State,Elapsed,ExitCode
+sacct -j <jobid> --format=JobID,JobName,State,Elapsed,ExitCode
 ```
 
 ```text
@@ -51,10 +51,10 @@ JobID           JobName      State    Elapsed ExitCode
 11738204     day2-prac+  COMPLETED   00:01:52      0:0
 ```
 
-Then read the log it produced:
+Then read the log it produced (again, substitute your own job ID for the filename):
 
 ```bash
-cat logs/day2-practice-11738204.out
+cat logs/day2-practice-<jobid>.out
 ```
 
 ```text
@@ -66,7 +66,7 @@ cat logs/day2-practice-11738204.out
 [PASS] classic PBMC marker genes present in var_names: present=['CD3D', 'CD8A', 'MS4A1', 'CD19', 'NKG7', 'LYZ', 'CD14', 'FCGR3A', 'PPBP'] missing=[]
 ```
 
-Each line is one automated check from [templates/diagnostic_scripts/verify_counts_matrix.py](../templates/diagnostic_scripts/verify_counts_matrix.py) — your first look at the kind of automated check you'll rely on again as the TEST step in every notebook from here on. All nine marker genes present is the direct payoff of the full-genome index decision in lesson 03. Any `FAIL` line is worth chasing down before moving on — the same instinct as Day 1's [reading errors without panicking](../../day1_foundations/lessons/04_command_line.md).
+Everyone runs this against the same shared `CHECKPOINT_H5AD`, so unlike the job ID/node/timing above, these particular numbers (`n_obs`, `n_vars`, marker genes) should come out the same for you as they did here — this is one real run's output, not a hypothetical. Each line is one automated check from [templates/diagnostic_scripts/verify_counts_matrix.py](../templates/diagnostic_scripts/verify_counts_matrix.py) — your first look at the kind of automated check you'll rely on again as the TEST step in every notebook from here on. All nine marker genes present is the direct payoff of the full-genome index decision in lesson 03. Any `FAIL` line, or numbers that don't match, is worth chasing down before moving on — the same instinct as Day 1's [reading errors without panicking](../../day1_foundations/lessons/04_command_line.md).
 
 ## If you see `QOSMaxMemoryPerJob`
 

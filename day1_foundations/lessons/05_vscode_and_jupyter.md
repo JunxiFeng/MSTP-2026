@@ -51,12 +51,30 @@ Then in VS Code:
 
 Everything you do in this window — the integrated terminal, the Python interpreter, Jupyter — now runs on TSCC, not on your laptop. Heavy computation should still be submitted through Slurm rather than run directly on the login node (see [10_hpc_and_slurm.md](10_hpc_and_slurm.md)) — Remote-SSH is for editing, light interactive testing, and submitting jobs, not for running the analysis itself on the login node.
 
-## 4. Open and run a Jupyter notebook
+## 4. Create and run a Jupyter notebook
 
-With the Jupyter extension installed, opening any `.ipynb` file gives you a notebook interface directly in VS Code:
+Jupyter itself isn't a separate install: `jupyterlab` and `ipykernel` are already listed in [environments/day1.yml](../../environments/day1.yml), so building the `mstp-day1` environment in [07_environments_and_reproducibility.md](07_environments_and_reproducibility.md) installs them along with everything else. The **Jupyter** extension you installed in step 2 above is what lets VS Code *open and run* `.ipynb` files — it's not Jupyter itself.
 
-- **Select Kernel** (top right of the notebook) chooses which Python environment runs your cells — this must match the environment you created in [07_environments_and_reproducibility.md](07_environments_and_reproducibility.md) (e.g., `mstp-day1`).
-- Run a cell with `Shift+Enter`.
+**Create a new notebook file:**
+
+- In the Explorer (left sidebar), right-click a folder and choose **New File...**, then name it with a `.ipynb` extension (e.g. `scratch.ipynb`). VS Code recognizes the extension and opens it as a notebook.
+- Or: Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) -> **Jupyter: Create New Jupyter Notebook**.
+
+Either way you get an empty notebook with one code cell, ready to type into.
+
+**Select the kernel** (which Python environment actually runs your cells):
+
+1. Click **Select Kernel** in the top-right corner of the notebook.
+2. Choose **Python Environments...** from the list.
+3. Pick `mstp-day1` (or `Python (mstp-day1)`) — the environment you created in [07_environments_and_reproducibility.md](07_environments_and_reproducibility.md). If it isn't in the list, go run the `python -m ipykernel install ...` step there, then come back and select it.
+4. The top-right corner now shows `mstp-day1` — that's your confirmation the right kernel is active.
+
+This must match the environment you created in [07_environments_and_reproducibility.md](07_environments_and_reproducibility.md) — a notebook running the wrong kernel will fail to import packages, or silently use the wrong versions.
+
+**Run cells:**
+
+- `Shift+Enter` runs the current cell and moves to the next (creating a new empty one at the end if needed).
+- `Ctrl+Enter` / `Cmd+Enter` runs the current cell and stays put.
 - The same notebook file works whether VS Code is running locally or remotely connected to TSCC via Remote-SSH — only the kernel selection changes.
 
 ## 5. Select the right Python interpreter

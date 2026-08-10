@@ -4,7 +4,7 @@
 
 This is where Day 1 actually begins — if you haven't seen the welcome in [README.md](README.md) yet, it's worth a minute, but this file is the one that gets you moving.
 
-Everything below is the minimum to get moving — each step is explained properly later today (VS Code and Remote-SSH in [lessons/05_vscode_and_jupyter.md](day1_foundations/lessons/05_vscode_and_jupyter.md), Git in [lessons/06_git_basics.md](day1_foundations/lessons/06_git_basics.md), conda/mamba in [lessons/07_environments_and_reproducibility.md](day1_foundations/lessons/07_environments_and_reproducibility.md)). For now, just get each step done; you're welcome to jump ahead and read any of those in full first if you'd rather understand before you type.
+Everything below is the minimum to get moving — each step is explained properly later today (VS Code and Remote-SSH in [lessons/05_vscode_and_jupyter.md](day1_foundations/lessons/05_vscode_and_jupyter.md), Git in [lessons/06_git_basics.md](day1_foundations/lessons/06_git_basics.md), conda in [lessons/07_environments_and_reproducibility.md](day1_foundations/lessons/07_environments_and_reproducibility.md)). For now, just get each step done; you're welcome to jump ahead and read any of those in full first if you'd rather understand before you type.
 
 1. **Get connected and get the repo.** Install [VS Code](https://code.visualstudio.com/), then its Remote-SSH extension, and connect to TSCC (`ssh your_username@login.tscc.sdsc.edu`, or the equivalent inside VS Code). Once connected, clone this repository somewhere under your own space on TSCC:
 

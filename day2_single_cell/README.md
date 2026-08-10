@@ -24,6 +24,8 @@ Register it as a Jupyter kernel (this writes to *your own* home directory, not t
   --name mstp-day2 --display-name "Python (mstp-day2)"
 ```
 
+VS Code's kernel picker only scans for kernels when it starts up, so it won't see this new one until you reload: open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) and run **Developer: Reload Window**.
+
 Then, in VS Code or Jupyter, select **Python (mstp-day2)** as the kernel before running any notebook cells. (If you ever want a terminal with it active instead: `conda activate /tscc/nfs/home/juf009/envs/mstp-day2`.)
 
 ## Where today's data lives

@@ -30,9 +30,9 @@ python day1_foundations/templates/diagnostic_scripts/check_python.py
 
 which prints the exact interpreter path, version, and working directory being used *right now*, in whatever context you run it — terminal, VS Code, or a notebook cell (`!python day1_foundations/templates/diagnostic_scripts/check_python.py`).
 
-## Installing a package manager: Miniforge (conda + mamba)
+## Installing a package manager: Miniforge (conda)
 
-You already did this in [START_HERE.md](../../START_HERE.md) — this is the same steps again, with the reasoning filled in. This course uses `conda`/`mamba` environments; [Miniforge](https://conda-forge.org/download/) is the community-maintained, conda-forge-first distribution that includes both:
+You already did this in [START_HERE.md](../../START_HERE.md) — this is the same steps again, with the reasoning filled in. This course uses `conda` environments; [Miniforge](https://conda-forge.org/download/) is the community-maintained, conda-forge-first distribution:
 
 ```bash
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
@@ -50,10 +50,11 @@ You should now see `(base)` at the start of your prompt. Confirm:
 
 ```bash
 conda --version
-mamba --version
 ```
 
-(TSCC also has a working `conda` available via `module load anaconda3`, without a separate `mamba` — but installing your own via Miniforge is what START_HERE has you do, since it works identically everywhere, not just on TSCC.)
+(TSCC also has a working `conda` available via `module load anaconda3` — but installing your own via Miniforge is what START_HERE has you do, since it works identically everywhere, not just on TSCC.)
+
+**A note on `mamba`:** you'll see it mentioned in cheatsheets and documentation as a faster drop-in replacement for `conda` (same commands, quicker dependency solving). It isn't something this course installs or requires — if you don't have a working `mamba` command, that's expected; every example below uses plain `conda`, and that's all you need.
 
 ## Creating this course's environment
 
@@ -73,7 +74,7 @@ Then activate as normal, which is cheap and fine to do directly on the login nod
 conda activate mstp-day1
 ```
 
-If you have a real `mamba` command (e.g. from installing Miniforge yourself), it's a drop-in replacement for `conda env create` inside that same Slurm script.
+If you happen to have a working `mamba` command, it's a drop-in replacement for `conda env create` inside that same Slurm script — but it's entirely optional; plain `conda` works fine and is what this course uses throughout.
 
 Verify:
 
