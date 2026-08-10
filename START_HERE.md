@@ -10,7 +10,7 @@ Everything below is the minimum to get moving — each step is explained properl
 
    ```bash
    git clone https://github.com/JunxiFeng/MSTP-2026.git
-   cd mstp-2026-bioinformatics-bootcamp
+   cd MSTP-2026
    ```
 
    Open this cloned folder in VS Code (**File > Open Folder**). Everything else below happens from inside it.
