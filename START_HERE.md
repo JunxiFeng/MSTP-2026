@@ -14,22 +14,39 @@ Everything below is the minimum to get moving — each step is explained properl
    ```
 
    Open this cloned folder in VS Code (**File > Open Folder**). Everything else below happens from inside it.
-2. **Make sure `conda` is available.** TSCC already has one — load it (you'll need to repeat this line in any new terminal session, until you add it to your shell profile):
+2. **Install `conda` (Miniforge).** This is a one-time step — once it's done, it's done for every future session, not just today:
 
    ```bash
-   module load anaconda3
-   conda --version
+   curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+   bash Miniforge3-$(uname)-$(uname -m).sh
    ```
 
-   If that doesn't print a version (e.g. you're not on TSCC), install your own — see [lessons/07_environments_and_reproducibility.md](day1_foundations/lessons/07_environments_and_reproducibility.md) for the Miniforge install command.
-3. Create the environment:
+   Press Enter/Space to page through the license, type `yes` to accept, then Enter again to accept the default install location (`~/miniforge3`). Then wire it into your shell so it's available every time you open a terminal:
+
+   ```bash
+   ~/miniforge3/bin/conda init bash
+   source ~/.bashrc
+   ```
+
+   Open a new terminal (or the `source` above is enough) and confirm you now see `(base)` at the start of your prompt, and that this works:
+
+   ```bash
+   conda --version
+   ```
+3. Build the environment — **on a compute node, not the login node.** This is small, but "small" doesn't save you here: `conda env create` parses the *entire* channel index (conda-forge's full package list, hundreds of MB) to solve, before it even gets to installing your handful of packages — enough to get killed by the login node's per-process memory cap (confirmed real: a plain `conda env create` on the login node dies mid-solve with `Killed`, no other explanation given). Request an interactive compute node first (this is Slurm — lesson 10 teaches it properly, just follow along for now):
+
+   ```bash
+   srun --partition=hotel --qos=hotel --account=htl191 --mem=16G --cpus-per-task=2 --time=00:30:00 --pty /bin/bash
+   ```
+
+   You're now on a compute node, in the same directory you started from. Build and activate the environment here:
 
    ```bash
    conda env create -f environments/day1.yml
    conda activate mstp-day1
    ```
 
-   TSCC's `conda` already solves quickly on its own (recent versions default to the fast `libmamba` solver) — you don't need a separate `mamba` install here. If you installed Miniforge yourself in step 2 and have a real `mamba` command, that works too: `mamba env create -f environments/day1.yml`.
+   Once that finishes, `exit` to return to the login node — you only needed the compute node for the build itself, and you'll `conda activate mstp-day1` again from the login node from here on (activation is cheap; the environment now already exists).
 
 4. Confirm which Python you are using:
 
