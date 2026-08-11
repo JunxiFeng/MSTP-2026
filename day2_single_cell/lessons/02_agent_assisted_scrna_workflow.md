@@ -15,13 +15,33 @@ Day 1's [08_coding_agents.md](../../day1_foundations/lessons/08_coding_agents.md
 | **TEST** | Run [templates/diagnostic_scripts/verify_counts_matrix.py](../templates/diagnostic_scripts/verify_counts_matrix.py) or a similar automated check rather than eyeballing a UMAP. |
 | **INTERPRET** | State a claim no stronger than "these are the cell types and approximate proportions present in this one donor" — not a group comparison, since today's data is one sample. |
 
-## A weak vs. strong prompt, for this domain
+## Weak vs. strong prompts, one per step
 
-> Weak: "Write code to filter out bad cells."
+The strong version always asks the agent to expose its judgment calls instead of burying them in a default. That's the difference between a threshold (or a resolution, or a label) you can defend later and one you can't. This is the one place today's notebooks point back to — none of them require a coding agent to complete (self-audit or trading with a classmate work just as well for the checklist below), but if you have one working, this is where to actually use it, at the matching step in each notebook:
+
+**QC ([05_loading_data_and_qc.ipynb](05_loading_data_and_qc.ipynb)):**
+
+> Weak: "Filter out low-quality cells."
 >
-> Strong: "I have a ~300-cell PBMC count matrix in AnnData. Write QC filtering code using `n_genes_by_counts`, `total_counts`, and `pct_counts_mt`, but don't hard-code threshold values — compute and show me the distributions first, and explain what threshold you'd choose and why, so I can approve it before it's applied."
+> Strong: "Show me histograms of `n_genes_by_counts`, `total_counts`, and `pct_counts_mt` for this AnnData object before applying any filter. Propose thresholds based on what you see in this specific dataset, state your reasoning, and don't apply anything until I've approved the thresholds."
 
-The strong version asks the agent to expose its judgment calls instead of burying them in a default. That's the difference between a threshold you can defend later and one you can't.
+**Normalization ([06_normalization_and_feature_selection.ipynb](06_normalization_and_feature_selection.ipynb)):**
+
+> Weak: "Normalize this data."
+>
+> Strong: "Normalize this AnnData object for downstream clustering: keep the raw counts in a separate named layer before normalizing `.X`, log-transform after total-count normalization, and tell me explicitly which layer any later fold-change or statistical test should use."
+
+**Clustering ([07_dimensionality_reduction_and_clustering.ipynb](07_dimensionality_reduction_and_clustering.ipynb)):**
+
+> Weak: "Cluster this data."
+>
+> Strong: "Cluster this AnnData object with Leiden across a range of resolutions, plot the number of clusters found at each, and tell me where that curve plateaus versus where it's still climbing — that's the stability information the resolution choice should actually be based on."
+
+**Annotation ([08_cell_type_annotation.ipynb](08_cell_type_annotation.ipynb)):**
+
+> Weak: "Label these clusters."
+>
+> Strong: "For each Leiden cluster, run `rank_genes_groups` and show me the top 10 genes by test statistic, then propose a cell-type label only where at least one gene from the marker panel appears in that cluster's top genes — flag any cluster where it doesn't, rather than guessing."
 
 ## The extended Agent B prompt
 
@@ -72,3 +92,5 @@ If Agent A and Agent B disagree, trace the specific check back to the actual cod
 ## Practice
 
 You'll invoke specific items from this checklist as you go: items 13 and 18 in [05_loading_data_and_qc.ipynb](05_loading_data_and_qc.ipynb), items 15 and 16 in [07_dimensionality_reduction_and_clustering.ipynb](07_dimensionality_reduction_and_clustering.ipynb), and item 17 in [08_cell_type_annotation.ipynb](08_cell_type_annotation.ipynb). At the end of notebook 08, you'll run the full 18-item checklist once, end to end, as today's capstone validation exercise.
+
+**Running the checklist doesn't require a coding agent.** If you have one working, open a fresh session as "Agent B" and have it audit your notebook against the fields and items above. If you don't, do the exact same audit yourself, or trade notebooks with a classmate and run it on each other's — either way, write down PASS/WARNING/FAIL, the evidence, and the smallest correction for anything short of a clean PASS. Today's notebooks themselves don't repeat this choice at every step; it's made once, here.
