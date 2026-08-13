@@ -20,7 +20,7 @@ By the end of today, you should be able to:
 | --- | --- |
 | 0:00-0:25 | What bioinformatics is + workflow design |
 | 0:25-0:45 | Sequencing / data generation / file types |
-| 0:45-1:05 | Command line + VS Code/Jupyter |
+| 0:45-1:05 | Command line + Jupyter via galyleo |
 | 1:05-1:15 | Break |
 | 1:15-1:40 | Git + repository structure |
 | 1:40-2:05 | Environments + reproducibility |
@@ -34,7 +34,7 @@ By the end of today, you should be able to:
 ## Required Path
 
 1. Read lessons 01-11 in order.
-2. Actually do each lesson's **Practice** section — don't just read it. Every lesson from 04 onward has one: shell commands in [04_command_line.md](lessons/04_command_line.md), installing/connecting VS Code in [05_vscode_and_jupyter.md](lessons/05_vscode_and_jupyter.md), a local commit in [06_git_basics.md](lessons/06_git_basics.md), an environment/kernel check in [07_environments_and_reproducibility.md](lessons/07_environments_and_reproducibility.md), a run of the reusable Agent B prompt in [09_agent_validation.md](lessons/09_agent_validation.md), and a Slurm submission in [10_hpc_and_slurm.md](lessons/10_hpc_and_slurm.md).
+2. Actually do each lesson's **Practice** section — don't just read it. Every lesson from 04 onward has one: shell commands in [04_command_line.md](lessons/04_command_line.md), launching a notebook via `galyleo` in [05_jupyter_on_tscc.md](lessons/05_jupyter_on_tscc.md), a local commit in [06_git_basics.md](lessons/06_git_basics.md), an environment/kernel check in [07_environments_and_reproducibility.md](lessons/07_environments_and_reproducibility.md), a run of the reusable Agent B prompt in [09_agent_validation.md](lessons/09_agent_validation.md), and a Slurm submission in [10_hpc_and_slurm.md](lessons/10_hpc_and_slurm.md).
 
 ## Personalized tracks (removed for now)
 
@@ -65,7 +65,7 @@ Biological question
 - [02 Analysis workflow](lessons/02_analysis_workflow.md)
 - [03 Data generation and sequencing](lessons/03_data_generation_and_sequencing.md)
 - [04 Command line](lessons/04_command_line.md)
-- [05 VS Code and Jupyter](lessons/05_vscode_and_jupyter.md)
+- [05 Running Jupyter on TSCC](lessons/05_jupyter_on_tscc.md)
 - [06 Git basics](lessons/06_git_basics.md)
 - [07 Environments and reproducibility](lessons/07_environments_and_reproducibility.md)
 - [08 Coding agents](lessons/08_coding_agents.md)

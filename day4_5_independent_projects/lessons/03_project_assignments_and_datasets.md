@@ -6,7 +6,7 @@ Five real datasets, no assigned groups. Every dataset below was actually downloa
 
 ## Project 1 — mouse ischemic stroke
 
-**For**: Noe Cazares Jr., Andrea Tran.
+**For**: Noe Cazares Jr., Andrea Tran, Cassidy Kohler.
 
 **Dataset**: GEO [GSE174574](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174574) — single-cell RNA-seq from mouse brain, 24 hours after either a sham operation or MCAO (middle cerebral artery occlusion, the standard ischemic stroke model). 6 samples: `sham1/2/3` and `MCAO1/2/3`.
 
@@ -16,7 +16,7 @@ Five real datasets, no assigned groups. Every dataset below was actually downloa
 
 ## Project 2 — pediatric osteosarcoma
 
-**For**: Ethan Subel, Mayra Mendiola.
+**For**: Ethan Subel, Mayra Mendiola, Duncan Hong.
 
 **Dataset**: ScPCA Portal project [SCPCP000017](https://scpca.alexslemonade.org/projects/SCPCP000017) — single-nucleus RNA-seq from 27 pediatric osteosarcoma tumor samples (the portal calls this "A Single Cell Atlas of Pediatric Sarcoma," but every sample in it is specifically Osteosarcoma).
 
@@ -44,7 +44,7 @@ Five real datasets, no assigned groups. Every dataset below was actually downloa
 
 ## Project 5 — aging and senescence in the human brain
 
-**For**: Kelechi Onwuzurike.
+**For**: Kelechi Onwuzurike, Jennifer Choi.
 
 **Dataset**: Sloan, Mares, Daly et al. 2025, *Cell Genomics* — "Uncovering the signatures of aging and senescence in the human dorsolateral prefrontal cortex." Single-nucleus RNA-seq from 36 cognitively normal donors spanning the adult human lifespan, no neurodegenerative disease (every donor's diagnosis is "Control"). Real, public data: the processed count matrix is on [Zenodo](https://doi.org/10.5281/zenodo.17467925), and donor-level age/sex metadata is in the paper's own [supplementary sheet](https://docs.google.com/spreadsheets/d/1rmVE_ZtojFaL0ChXuxNjC9N2wWLPpffSWVh0U2asZP4/edit) — both were actually downloaded and joined before this lesson was written.
 

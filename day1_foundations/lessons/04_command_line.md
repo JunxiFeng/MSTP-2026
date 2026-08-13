@@ -2,14 +2,14 @@
 
 **REQUIRED DAY 1**
 
-## Why the command line, when we have VS Code and Jupyter?
+## Why the command line, when Jupyter has a GUI?
 
-Almost everything you'll do this week — running Python, using Git, submitting HPC jobs, moving files around on a remote cluster — happens through a shell underneath the GUI. VS Code's integrated terminal, Jupyter's `!` shell escapes, and TSCC's login node are all just terminals. Comfort here is the single skill that makes everything downstream easier.
+Almost everything you'll do this week — running Python, using Git, submitting HPC jobs, launching Jupyter itself via `galyleo`, moving files around on a remote cluster — happens through a shell. The login node you `ssh` into, and the notebook server `galyleo` launches for you, are both reached through a terminal first. Comfort here is the single skill that makes everything downstream easier.
 
 ## Getting a terminal open
 
 - **macOS**: open the built-in **Terminal** app, or [iTerm2](https://iterm2.com/) for a nicer experience. macOS ships `zsh` by default.
-- **Windows**: use the terminal built into VS Code once installed ([05_vscode_and_jupyter.md](05_vscode_and_jupyter.md)), or install [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) for a real Linux shell — recommended if you'll do a lot of command-line work locally.
+- **Windows**: use **PowerShell** or **Windows Terminal** (both built in), or install [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) for a real Linux shell — recommended if you'll do a lot of command-line work locally. If you end up installing VS Code too ([05_jupyter_on_tscc.md](05_jupyter_on_tscc.md)), its integrated terminal is another option, but it's not required just to get a terminal.
 - **Linux**: any terminal emulator; the default shell is usually `bash`.
 - **On TSCC (HPC)**: you always get a shell the moment you `ssh` in — see [10_hpc_and_slurm.md](10_hpc_and_slurm.md).
 

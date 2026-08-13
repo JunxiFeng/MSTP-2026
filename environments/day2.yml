@@ -10,6 +10,7 @@ dependencies:
   - squidpy
   - leidenalg
   - python-igraph
+  - harmonypy
   - scikit-learn
   - scikit-image
   - umap-learn

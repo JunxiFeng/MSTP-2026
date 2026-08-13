@@ -48,7 +48,7 @@ A Codex VS Code extension is also available from the Extensions view for an in-e
 
 ### On TSCC
 
-Both tools can also be installed on TSCC itself (e.g., via a local `npm`/Node module, or by connecting VS Code to TSCC over Remote-SSH as in [05_vscode_and_jupyter.md](05_vscode_and_jupyter.md) and installing the extension there). Whether you run the agent locally or on the cluster, the DEFINE -> ASK -> RUN -> VALIDATE -> TEST -> INTERPRET loop below is identical.
+Both tools can also be installed on TSCC itself (e.g., via a local `npm`/Node module, or by connecting VS Code to TSCC over Remote-SSH as in [05_jupyter_on_tscc.md](05_jupyter_on_tscc.md) and installing the extension there). Whether you run the agent locally or on the cluster, the DEFINE -> ASK -> RUN -> VALIDATE -> TEST -> INTERPRET loop below is identical.
 
 ## Keep your agent off the login node
 

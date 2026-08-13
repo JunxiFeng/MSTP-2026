@@ -8,7 +8,7 @@ Day 1 gets you through the first four rungs:
 
 | Level | What it means | Where you did it today |
 | --- | --- | --- |
-| 1. Save code | The analysis exists as a script/notebook, not just commands typed once. | [05_vscode_and_jupyter.md](05_vscode_and_jupyter.md) |
+| 1. Save code | The analysis exists as a script/notebook, not just commands typed once. | [05_jupyter_on_tscc.md](05_jupyter_on_tscc.md) |
 | 2. Version code | Changes are tracked, with history, in Git. | [06_git_basics.md](06_git_basics.md) |
 | 3. Specify dependencies | The environment is a file (`environment.yml`), not tribal knowledge. | [07_environments_and_reproducibility.md](07_environments_and_reproducibility.md) |
 | 4. Automate execution | The analysis runs the same way locally and on a scheduler. | [10_hpc_and_slurm.md](10_hpc_and_slurm.md) |

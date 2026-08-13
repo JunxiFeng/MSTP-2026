@@ -11,11 +11,11 @@ A software environment is **code + packages + package versions + runtime**, all 
 The same command, `python`, can point at completely different installations depending on *where you type it*:
 
 1. **Shell Python** — whatever `python`/`python3` resolves to in your terminal right now.
-2. **VS Code interpreter** — the interpreter VS Code selected for running/debugging `.py` files ([05_vscode_and_jupyter.md](05_vscode_and_jupyter.md)).
-3. **Jupyter kernel** — the interpreter a specific notebook is attached to, chosen independently of both of the above.
-4. **HPC environment** — whatever modules/conda environment is active on a TSCC login or compute node ([10_hpc_and_slurm.md](10_hpc_and_slurm.md)), which is separate from all three above.
+2. **Jupyter kernel** — the interpreter a specific notebook is attached to, chosen independently of the shell (see [05_jupyter_on_tscc.md](05_jupyter_on_tscc.md) for launching Jupyter via `galyleo` and selecting this).
+3. **HPC environment** — whatever modules/conda environment is active on a TSCC login or compute node ([10_hpc_and_slurm.md](10_hpc_and_slurm.md)), which is separate from both above.
+4. **VS Code interpreter** *(only if you're using VS Code as an editor)* — the interpreter VS Code selects for running/debugging `.py` files, independent of the three above.
 
-These four can silently disagree — e.g., you `pip install`ed a package in a terminal, but your notebook kernel is a different Python that doesn't have it. Check with:
+These can silently disagree — e.g., you `pip install`ed a package in a terminal, but your notebook kernel is a different Python that doesn't have it. Check with:
 
 ```bash
 which python
@@ -28,7 +28,7 @@ or, in Python itself:
 python day1_foundations/templates/diagnostic_scripts/check_python.py
 ```
 
-which prints the exact interpreter path, version, and working directory being used *right now*, in whatever context you run it — terminal, VS Code, or a notebook cell (`!python day1_foundations/templates/diagnostic_scripts/check_python.py`).
+which prints the exact interpreter path, version, and working directory being used *right now*, in whatever context you run it — terminal, a notebook cell (`!python day1_foundations/templates/diagnostic_scripts/check_python.py`), or VS Code if you're using it.
 
 ## Installing a package manager: Miniforge (conda)
 
@@ -86,14 +86,14 @@ conda env list
 
 ## Registering the environment as a Jupyter kernel
 
-`environments/day1.yml` already includes `ipykernel`, which lets this environment show up as a selectable kernel. If a new environment you create doesn't show up in VS Code's or Jupyter's kernel picker, register it explicitly:
+`environments/day1.yml` already includes `ipykernel`, which lets this environment show up as a selectable kernel. If a new environment you create doesn't show up in Jupyter's kernel picker (launched via `galyleo`, see [05_jupyter_on_tscc.md](05_jupyter_on_tscc.md)), register it explicitly:
 
 ```bash
 conda activate mstp-day1
 python -m ipykernel install --user --name mstp-day1 --display-name "Python (mstp-day1)"
 ```
 
-Then select "Python (mstp-day1)" as the kernel in VS Code or Jupyter.
+Then select "Python (mstp-day1)" as the kernel in Jupyter (or in VS Code, if you're also using that as an editor — kernel registration is shared between the two).
 
 ## `environment.yml` vs. `requirements.txt`
 
